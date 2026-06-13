@@ -152,6 +152,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   const submitText    = submitBtn ? submitBtn.querySelector('.contact-form__submit-text') : null;
   const submitSpinner = submitBtn ? submitBtn.querySelector('.contact-form__submit-spinner') : null;
 
+  // i18n strings from PHP data attributes
+  const msgSuccess = form.dataset.msgSuccess || 'Message sent!';
+  const msgError   = form.dataset.msgError   || 'An error occurred.';
+  const msgNet     = form.dataset.msgNet     || 'Connection error.';
+  const msgSending = form.dataset.msgSending || 'Sending…';
+
   function setStatus(type, msg) {
     if (!statusEl) return;
     statusEl.className = 'contact-form__status contact-form__status--' + type;
@@ -163,7 +169,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   function setBusy(busy) {
     if (!submitBtn) return;
     submitBtn.disabled = busy;
-    if (submitText)    submitText.hidden = busy;
+    if (submitText) {
+      submitText.hidden = busy;
+      if (!busy) submitText.textContent = form.dataset.msgSubmit || submitText.textContent;
+    }
     if (submitSpinner) submitSpinner.hidden = !busy;
   }
 
@@ -187,17 +196,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       const data = await res.json();
 
       if (data.success) {
-        setStatus('success', data.message ?? 'Message envoyé ! Nous vous répondrons sous 48 h.');
+        setStatus('success', data.message ?? msgSuccess);
         form.reset();
         if (charCount) charCount.textContent = '0 / 2000';
       } else {
         const msg = data.errors
           ? data.errors.join(' ')
-          : (data.message ?? 'Une erreur est survenue. Veuillez réessayer.');
+          : (data.message ?? msgError);
         setStatus('error', msg);
       }
     } catch {
-      setStatus('error', 'Erreur de connexion. Veuillez vérifier votre réseau et réessayer.');
+      setStatus('error', msgNet);
     } finally {
       setBusy(false);
     }

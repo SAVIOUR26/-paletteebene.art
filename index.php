@@ -1,36 +1,40 @@
 <?php
+require_once 'lang/init.php';
 require_once 'config.php';
 
-// Route handling — all requests go here via .htaccess
 $page = $_GET['page'] ?? 'home';
 $allowed_pages = ['home', 'events', 'about', 'contact'];
-if (!in_array($page, $allowed_pages)) {
+if (!in_array($page, $allowed_pages, true)) {
     $page = 'home';
 }
+
+$og_locale = $current_lang === 'en' ? 'en_GB' : 'fr_FR';
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<?= t('html_lang') ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Palette Ébène — <?= htmlspecialchars(SITE_TAGLINE) ?> — Vernissages, soirées culturelles et expositions afro-diasporiques à Paris.">
+    <meta name="description" content="<?= htmlspecialchars(t('meta_desc')) ?>">
     <meta name="theme-color" content="#2C1810">
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="<?= htmlspecialchars(SITE_NAME) ?> — <?= htmlspecialchars(SITE_TAGLINE) ?>">
-    <meta property="og:description" content="Arts africains et de la diaspora, célébrés avec élégance. Vernissages, soirées culturelles et expositions à Paris.">
-    <meta property="og:image" content="<?= SITE_URL ?>/assets/images/og-image.jpg">
-    <meta property="og:url" content="<?= SITE_URL ?>">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="<?= htmlspecialchars(SITE_NAME) ?>">
+    <meta property="og:type"        content="website">
+    <meta property="og:title"       content="<?= htmlspecialchars(SITE_NAME) ?> — <?= htmlspecialchars(t('hero_tagline')) ?>">
+    <meta property="og:description" content="<?= htmlspecialchars(t('meta_desc')) ?>">
+    <meta property="og:image"       content="<?= SITE_URL ?>/assets/images/og-image.jpg">
+    <meta property="og:url"         content="<?= SITE_URL ?>">
+    <meta property="og:locale"      content="<?= $og_locale ?>">
+    <meta property="og:site_name"   content="<?= htmlspecialchars(SITE_NAME) ?>">
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="<?= htmlspecialchars(SITE_NAME) ?>">
-    <meta name="twitter:description" content="<?= htmlspecialchars(SITE_TAGLINE) ?> — Arts africains et de la diaspora.">
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="<?= htmlspecialchars(SITE_NAME) ?>">
+    <meta name="twitter:description" content="<?= htmlspecialchars(t('meta_desc')) ?>">
 
-    <!-- Canonical -->
+    <!-- Alternate language links -->
+    <link rel="alternate" hreflang="fr" href="<?= SITE_URL ?>?lang=fr">
+    <link rel="alternate" hreflang="en" href="<?= SITE_URL ?>?lang=en">
     <link rel="canonical" href="<?= SITE_URL ?>">
 
     <!-- Favicon (SVG inline data URI) -->
@@ -44,7 +48,7 @@ if (!in_array($page, $allowed_pages)) {
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <title><?= htmlspecialchars(SITE_NAME) ?> — <?= htmlspecialchars(SITE_TAGLINE) ?></title>
+    <title><?= htmlspecialchars(SITE_NAME) ?> — <?= htmlspecialchars(t('hero_tagline')) ?></title>
 </head>
 <body class="page-<?= htmlspecialchars($page) ?>">
 
@@ -73,5 +77,6 @@ if (!in_array($page, $allowed_pages)) {
 
 <?php include 'includes/footer.php'; ?>
 
+<script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -18,7 +18,7 @@ if (!empty($instagram_posts_config) && is_array($instagram_posts_config)) {
 <section class="instagram-section" id="instagram" aria-labelledby="instagram-title">
     <div class="container">
         <div class="section-header fade-in">
-            <span class="section-eyebrow">Suivez notre actualité</span>
+            <span class="section-eyebrow"><?= htmlspecialchars(t('ig_eyebrow')) ?></span>
             <h2 class="section-title" id="instagram-title">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-right:10px;">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
@@ -27,9 +27,7 @@ if (!empty($instagram_posts_config) && is_array($instagram_posts_config)) {
                 </svg>
                 @<?= htmlspecialchars(INSTAGRAM_USERNAME) ?>
             </h2>
-            <p class="section-subtitle">
-                Découvrez les coulisses de nos événements, les œuvres de nos artistes partenaires et les moments forts de la communauté Palette Ébène.
-            </p>
+            <p class="section-subtitle"><?= htmlspecialchars(t('ig_subtitle')) ?></p>
         </div>
 
         <div class="instagram-grid">
@@ -92,15 +90,14 @@ if (!empty($instagram_posts_config) && is_array($instagram_posts_config)) {
                class="btn btn--instagram"
                target="_blank"
                rel="noopener noreferrer"
-               aria-label="Suivre Palette Ébène sur Instagram">
+               aria-label="<?= htmlspecialchars(t('ig_cta')) ?>">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                     <circle cx="12" cy="12" r="4"/>
                     <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
                 </svg>
-                Suivre @<?= htmlspecialchars(INSTAGRAM_USERNAME) ?>
+                <?= htmlspecialchars(t('ig_cta')) ?>
             </a>
-            <p class="instagram-cta__note">501 abonnés et toujours plus de culture partagée</p>
         </div>
     </div>
 </section>

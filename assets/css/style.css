@@ -262,6 +262,46 @@ h1, h2, h3, h4 {
 .btn--lg { padding: 1rem 2.25rem; font-size: 1.05rem; }
 .btn--small { padding: 0.6rem 1.4rem; font-size: 0.875rem; }
 
+/* ── Language Switcher ──────────────────────────────────── */
+.navbar__right-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar__lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-light);
+  border: 1px solid rgba(212,168,83,0.25);
+  border-radius: var(--radius-full);
+  background: rgba(212,168,83,0.06);
+  transition: all var(--transition);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.navbar__lang-switch:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(212,168,83,0.12);
+}
+.lang-switch__globe { font-size: 0.85rem; line-height: 1; }
+
+.navbar__lang-switch--mobile {
+  display: none;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .navbar__lang-switch:not(.navbar__lang-switch--mobile) { display: none; }
+  .navbar__lang-switch--mobile { display: inline-flex; }
+}
+
 /* ── Navigation ─────────────────────────────────────────── */
 .site-header {
   position: fixed;

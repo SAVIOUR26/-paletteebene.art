@@ -53,23 +53,15 @@
         <!-- Right: Story text -->
         <div class="about__content fade-in">
             <div class="section-header section-header--left">
-                <span class="section-eyebrow">Notre histoire</span>
-                <h2 class="section-title" id="about-title">À Propos de Palette Ébène</h2>
+                <span class="section-eyebrow"><?= htmlspecialchars(t('about_eyebrow')) ?></span>
+                <h2 class="section-title" id="about-title"><?= htmlspecialchars(t('about_title')) ?></h2>
                 <div class="section-divider section-divider--left" aria-hidden="true"></div>
             </div>
 
             <div class="about__text">
-                <p class="about__lead">
-                    Palette Ébène est née d'une conviction simple et profonde : <strong>l'art africain et de la diaspora mérite une scène à sa hauteur</strong> — somptueuse, authentique, vibrante de vie.
-                </p>
-
-                <p>
-                    Fondée à Paris, notre collectif réunit des artistes visuels, des musiciens, des poètes et des commissaires d'exposition autour d'une passion commune : <em>célébrer la richesse infinie des cultures africaines et de la diaspora mondiale</em>. De Lagos à la Martinique, de Dakar à Londres, nos événements tissent des ponts entre les générations, les traditions et les avant-gardes.
-                </p>
-
-                <p>
-                    Depuis notre premier vernissage en mars 2024, Palette Ébène a accueilli plus de <strong>1 400 visiteurs</strong> lors de six événements inoubliables. Chaque soirée est conçue comme une œuvre en elle-même — un espace où l'on peut voir, entendre, ressentir et appartenir.
-                </p>
+                <p class="about__lead"><?= th('about_lead') ?></p>
+                <p><?= th('about_p1') ?></p>
+                <p><?= th('about_p2') ?></p>
 
                 <div class="about__values">
                     <div class="about__value">
@@ -81,8 +73,8 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 class="about__value-title">Authenticité</h3>
-                            <p>Des œuvres vraies, des artistes engagés, des histoires qui résonnent.</p>
+                            <h3 class="about__value-title"><?= htmlspecialchars(t('about_val1_title')) ?></h3>
+                            <p><?= htmlspecialchars(t('about_val1_text')) ?></p>
                         </div>
                     </div>
                     <div class="about__value">
@@ -93,8 +85,8 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 class="about__value-title">Héritage vivant</h3>
-                            <p>Honorer le passé pour illuminer le présent et inventer l'avenir.</p>
+                            <h3 class="about__value-title"><?= htmlspecialchars(t('about_val2_title')) ?></h3>
+                            <p><?= htmlspecialchars(t('about_val2_text')) ?></p>
                         </div>
                     </div>
                     <div class="about__value">
@@ -107,33 +99,33 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 class="about__value-title">Communauté</h3>
-                            <p>Bâtir ensemble un espace d'appartenance, de dialogue et de joie.</p>
+                            <h3 class="about__value-title"><?= htmlspecialchars(t('about_val3_title')) ?></h3>
+                            <p><?= htmlspecialchars(t('about_val3_text')) ?></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="about__stats-row">
                     <div class="about__stat-item">
-                        <span class="about__stat-number">1 400+</span>
-                        <span class="about__stat-label">Visiteurs accueillis</span>
+                        <span class="about__stat-number"><?= htmlspecialchars(t('about_stat1_num')) ?></span>
+                        <span class="about__stat-label"><?= htmlspecialchars(t('about_stat1_lbl')) ?></span>
                     </div>
                     <div class="about__stat-item">
-                        <span class="about__stat-number">500+</span>
-                        <span class="about__stat-label">Abonnés Instagram</span>
+                        <span class="about__stat-number"><?= htmlspecialchars(t('about_stat2_num')) ?></span>
+                        <span class="about__stat-label"><?= htmlspecialchars(t('about_stat2_lbl')) ?></span>
                     </div>
                     <div class="about__stat-item">
-                        <span class="about__stat-number">30+</span>
-                        <span class="about__stat-label">Artistes collaborateurs</span>
+                        <span class="about__stat-number"><?= htmlspecialchars(t('about_stat3_num')) ?></span>
+                        <span class="about__stat-label"><?= htmlspecialchars(t('about_stat3_lbl')) ?></span>
                     </div>
                     <div class="about__stat-item">
-                        <span class="about__stat-number">6</span>
-                        <span class="about__stat-label">Événements majeurs</span>
+                        <span class="about__stat-number"><?= htmlspecialchars(t('about_stat4_num')) ?></span>
+                        <span class="about__stat-label"><?= htmlspecialchars(t('about_stat4_lbl')) ?></span>
                     </div>
                 </div>
 
                 <a href="#contact" class="btn btn--primary btn--small">
-                    <span>Nous rejoindre</span>
+                    <span><?= htmlspecialchars(t('about_cta')) ?></span>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="5" y1="12" x2="19" y2="12"/>
                         <polyline points="12 5 19 12 12 19"/>
