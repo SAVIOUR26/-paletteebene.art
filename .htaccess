@@ -5,6 +5,13 @@ Options +FollowSymLinks
 RewriteEngine On
 RewriteBase /
 
+# Force HTTPS (uncomment when SSL is active)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Route contact form directly
+RewriteRule ^contact-submit/?$ contact.php [L,QSA]
+
 # Serve existing files/dirs directly
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
