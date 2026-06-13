@@ -1,19 +1,67 @@
-<nav class="site-nav" id="site-nav">
-    <div class="nav-container">
-        <a href="/" class="nav-logo" aria-label="Palette Ébène - Accueil">
-            <img src="assets/images/logo.svg" alt="Palette Ébène Logo" width="48" height="48">
-            <span class="nav-logo-text">Palette <em>Ébène</em></span>
-        </a>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
-            <span></span><span></span><span></span>
+<header class="site-header" id="site-header" role="banner">
+    <nav class="navbar" aria-label="Navigation principale">
+        <div class="navbar__inner">
+            <!-- Logo -->
+            <a href="#hero" class="navbar__logo" aria-label="Palette Ébène — Accueil">
+                <img src="assets/images/logo.svg" alt="Palette Ébène" width="44" height="44">
+                <div class="navbar__logo-text">
+                    <span class="navbar__logo-name">Palette <em>Ébène</em></span>
+                </div>
+            </a>
+
+            <!-- Desktop menu -->
+            <ul class="navbar__menu" role="list">
+                <li><a href="#hero"                class="navbar__link">Accueil</a></li>
+                <li><a href="#evenements"           class="navbar__link">Événements</a></li>
+                <li><a href="#prochain-evenement"   class="navbar__link">Prochain Événement</a></li>
+                <li><a href="#a-propos"             class="navbar__link">À Propos</a></li>
+                <li>
+                    <a href="https://www.instagram.com/<?= htmlspecialchars(INSTAGRAM_USERNAME) ?>/"
+                       class="navbar__link navbar__link--instagram"
+                       target="_blank" rel="noopener noreferrer"
+                       aria-label="Instagram @palette.ebene">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <circle cx="12" cy="12" r="4"/>
+                            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                        </svg>
+                        Instagram
+                    </a>
+                </li>
+                <li><a href="#contact" class="navbar__link navbar__cta">Contact</a></li>
+            </ul>
+
+            <!-- Hamburger button -->
+            <button
+                class="navbar__hamburger"
+                id="hamburger-btn"
+                aria-label="Ouvrir le menu"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+                type="button"
+            >
+                <span class="hamburger__line"></span>
+                <span class="hamburger__line"></span>
+                <span class="hamburger__line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile fullscreen menu -->
+    <div class="navbar__mobile" id="mobile-menu" hidden role="dialog" aria-modal="true" aria-label="Menu mobile">
+        <button class="navbar__mobile-close" id="mobile-close" aria-label="Fermer le menu" type="button">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
         </button>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#hero" class="nav-link">Accueil</a></li>
-            <li><a href="#events" class="nav-link">Événements</a></li>
-            <li><a href="#next-event" class="nav-link">Prochaine Soirée</a></li>
-            <li><a href="#about" class="nav-link">À Propos</a></li>
-            <li><a href="#instagram" class="nav-link">Instagram</a></li>
-            <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
+        <ul class="navbar__mobile-list" role="list">
+            <li><a href="#hero"              class="navbar__mobile-link">Accueil</a></li>
+            <li><a href="#evenements"        class="navbar__mobile-link">Événements</a></li>
+            <li><a href="#prochain-evenement" class="navbar__mobile-link">Prochain Événement</a></li>
+            <li><a href="#a-propos"          class="navbar__mobile-link">À Propos</a></li>
+            <li><a href="#instagram"         class="navbar__mobile-link">Instagram</a></li>
+            <li><a href="#contact"           class="navbar__mobile-link navbar__mobile-cta">Contact</a></li>
         </ul>
     </div>
-</nav>
+</header>
