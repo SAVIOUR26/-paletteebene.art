@@ -1,26 +1,25 @@
 <?php
-/**
- * Palette Ébène — Instagram Feed Section
- */
+// $instagram_posts is loaded from config.php (all 58 real post URLs)
+$initial_count = defined('INSTAGRAM_INITIAL_COUNT') ? INSTAGRAM_INITIAL_COUNT : 9;
+$total         = count($instagram_posts);
+$visible       = array_slice($instagram_posts, 0, $initial_count);
+$hidden        = array_slice($instagram_posts, $initial_count);
+$remaining     = count($hidden);
 
-// Sample Instagram post URLs — replace with real post URLs from @palette.ebene
-$instagram_posts = [
-    'https://www.instagram.com/p/C_EXAMPLE001/',
-    'https://www.instagram.com/p/C_EXAMPLE002/',
-    'https://www.instagram.com/p/C_EXAMPLE003/',
-];
-
-// Use config posts if defined
-if (!empty($instagram_posts_config) && is_array($instagram_posts_config)) {
-    $instagram_posts = $instagram_posts_config;
-}
+// i18n
+$label_view_on_ig = ($current_lang ?? 'fr') === 'en' ? 'View on Instagram' : 'Voir sur Instagram';
+$label_show_more  = ($current_lang ?? 'fr') === 'en'
+    ? "Show all {$total} posts"
+    : "Voir les {$total} publications";
+$label_show_less  = ($current_lang ?? 'fr') === 'en' ? 'Show less' : 'Réduire';
 ?>
 <section class="instagram-section" id="instagram" aria-labelledby="instagram-title">
     <div class="container">
+
         <div class="section-header fade-in">
             <span class="section-eyebrow"><?= htmlspecialchars(t('ig_eyebrow')) ?></span>
             <h2 class="section-title" id="instagram-title">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-right:10px;">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:middle;margin-right:10px;">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                     <circle cx="12" cy="12" r="4"/>
                     <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
@@ -28,55 +27,36 @@ if (!empty($instagram_posts_config) && is_array($instagram_posts_config)) {
                 @<?= htmlspecialchars(INSTAGRAM_USERNAME) ?>
             </h2>
             <p class="section-subtitle"><?= htmlspecialchars(t('ig_subtitle')) ?></p>
+            <p class="ig-post-count">
+                <span class="ig-count-badge"><?= $total ?></span>
+                <?= ($current_lang ?? 'fr') === 'en' ? 'posts' : 'publications' ?>
+            </p>
         </div>
 
-        <div class="instagram-grid">
-            <?php foreach ($instagram_posts as $post_url): ?>
-            <div class="instagram-post fade-in">
+        <!-- Initial 9 posts — always visible -->
+        <div class="instagram-embed-grid" id="ig-grid-visible">
+            <?php foreach ($visible as $i => $post_url): ?>
+            <div class="ig-embed-wrap fade-in" data-delay="<?= $i * 60 ?>">
                 <blockquote
                     class="instagram-media"
                     data-instgrm-permalink="<?= htmlspecialchars($post_url) ?>"
                     data-instgrm-version="14"
-                    style="
-                        background:#FFF;
-                        border:0;
-                        border-radius:3px;
-                        box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
-                        margin:1px;
-                        max-width:540px;
-                        min-width:326px;
-                        padding:0;
-                        width:99.375%;
-                        width:-webkit-calc(100% - 2px);
-                        width:calc(100% - 2px);
-                    ">
+                    style="background:#fff;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:calc(100% - 2px);">
                     <div style="padding:16px;">
                         <a href="<?= htmlspecialchars($post_url) ?>"
-                           style="background:#FFFFFF;line-height:0;padding:0 0;text-align:center;text-decoration:none;width:100%;"
+                           style="background:#fff;line-height:0;padding:0;text-align:center;text-decoration:none;width:100%;"
                            target="_blank" rel="noopener noreferrer">
-                            <div style="display:flex;flex-direction:row;align-items:center;">
-                                <div style="background-color:#F4F4F4;border-radius:50%;flex-grow:0;height:40px;margin-right:14px;width:40px;"></div>
-                                <div style="display:flex;flex-direction:column;flex-grow:1;justify-content:center;">
-                                    <div style="background-color:#F4F4F4;border-radius:4px;flex-grow:0;height:14px;margin-bottom:6px;width:100px;"></div>
-                                    <div style="background-color:#F4F4F4;border-radius:4px;flex-grow:0;height:14px;width:60px;"></div>
+                            <!-- Loading skeleton shown until embed.js replaces it -->
+                            <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
+                                <div style="background:#f0ece4;border-radius:50%;width:40px;height:40px;flex-shrink:0;"></div>
+                                <div style="flex:1;">
+                                    <div style="background:#f0ece4;border-radius:4px;height:12px;width:80px;margin-bottom:6px;"></div>
+                                    <div style="background:#f0ece4;border-radius:4px;height:10px;width:55px;"></div>
                                 </div>
                             </div>
-                            <div style="padding:19% 0;"></div>
-                            <div style="display:block;height:50px;margin:0 auto 12px;width:50px;">
-                                <svg width="50px" height="50px" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                                    <g fill="none" fill-rule="evenodd">
-                                        <g transform="translate(-511.000000, -20.000000)" fill="#000">
-                                            <g>
-                                                <path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101"/>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>
-                            </div>
-                            <div style="padding-top:8px;">
-                                <div style="color:#3897f0;font-family:Arial,sans-serif;font-size:14px;font-style:normal;font-weight:550;line-height:18px;">
-                                    Voir cette publication sur Instagram
-                                </div>
+                            <div style="background:linear-gradient(135deg,#2C1810,#6a2a6a);padding:30% 0;border-radius:4px;margin-bottom:12px;"></div>
+                            <div style="color:#3897f0;font-family:Arial,sans-serif;font-size:14px;font-weight:600;text-align:center;">
+                                <?= htmlspecialchars($label_view_on_ig) ?>
                             </div>
                         </a>
                     </div>
@@ -85,13 +65,63 @@ if (!empty($instagram_posts_config) && is_array($instagram_posts_config)) {
             <?php endforeach; ?>
         </div>
 
+        <?php if ($remaining > 0): ?>
+        <!-- Remaining posts — hidden until "Show more" clicked -->
+        <div class="instagram-embed-grid instagram-embed-grid--hidden" id="ig-grid-more" hidden>
+            <?php foreach ($hidden as $post_url): ?>
+            <div class="ig-embed-wrap">
+                <blockquote
+                    class="instagram-media"
+                    data-instgrm-permalink="<?= htmlspecialchars($post_url) ?>"
+                    data-instgrm-version="14"
+                    style="background:#fff;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:calc(100% - 2px);">
+                    <div style="padding:16px;">
+                        <a href="<?= htmlspecialchars($post_url) ?>"
+                           style="background:#fff;line-height:0;padding:0;text-align:center;text-decoration:none;width:100%;"
+                           target="_blank" rel="noopener noreferrer">
+                            <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
+                                <div style="background:#f0ece4;border-radius:50%;width:40px;height:40px;flex-shrink:0;"></div>
+                                <div style="flex:1;">
+                                    <div style="background:#f0ece4;border-radius:4px;height:12px;width:80px;margin-bottom:6px;"></div>
+                                    <div style="background:#f0ece4;border-radius:4px;height:10px;width:55px;"></div>
+                                </div>
+                            </div>
+                            <div style="background:linear-gradient(135deg,#2C1810,#6a2a6a);padding:30% 0;border-radius:4px;margin-bottom:12px;"></div>
+                            <div style="color:#3897f0;font-family:Arial,sans-serif;font-size:14px;font-weight:600;text-align:center;">
+                                <?= htmlspecialchars($label_view_on_ig) ?>
+                            </div>
+                        </a>
+                    </div>
+                </blockquote>
+            </div>
+            <?php endforeach; ?>
+        </div>
+
+        <!-- Show more / Show less toggle -->
+        <div class="ig-load-more fade-in" id="ig-load-more-wrap">
+            <button
+                class="btn btn--outline ig-load-more__btn"
+                id="ig-load-more-btn"
+                aria-expanded="false"
+                aria-controls="ig-grid-more"
+                data-label-more="<?= htmlspecialchars($label_show_more) ?>"
+                data-label-less="<?= htmlspecialchars($label_show_less) ?>">
+                <svg class="ig-load-more__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+                <?= htmlspecialchars($label_show_more) ?>
+            </button>
+        </div>
+        <?php endif; ?>
+
+        <!-- Follow CTA -->
         <div class="instagram-cta fade-in">
-            <a href="https://www.instagram.com/<?= htmlspecialchars(INSTAGRAM_USERNAME) ?>/"
+            <a href="<?= htmlspecialchars(INSTAGRAM_PROFILE_URL) ?>"
                class="btn btn--instagram"
                target="_blank"
                rel="noopener noreferrer"
                aria-label="<?= htmlspecialchars(t('ig_cta')) ?>">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                     <circle cx="12" cy="12" r="4"/>
                     <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
@@ -99,7 +129,9 @@ if (!empty($instagram_posts_config) && is_array($instagram_posts_config)) {
                 <?= htmlspecialchars(t('ig_cta')) ?>
             </a>
         </div>
+
     </div>
 </section>
 
+<!-- Instagram embed script — loads once, processes all blockquotes on the page -->
 <script async src="//www.instagram.com/embed.js"></script>

@@ -1031,10 +1031,78 @@ h1, h2, h3, h4 {
   color: var(--text-light);
 }
 
-/* ── Instagram Feed ─────────────────────────────────────── */
+/* ── Instagram Feed (real embeds) ──────────────────────── */
+.ig-post-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+.ig-count-badge {
+  background: rgba(212,168,83,0.15);
+  color: var(--gold);
+  border: 1px solid rgba(212,168,83,0.3);
+  border-radius: var(--radius-full);
+  padding: 0.15rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.instagram-embed-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+.instagram-embed-grid--hidden { margin-top: 1.25rem; }
+
+.ig-embed-wrap {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.ig-embed-wrap:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+/* Instagram embeds are white — give wrapper a subtle dark border */
+.ig-embed-wrap .instagram-media {
+  border-radius: var(--radius-md) !important;
+  border: 1px solid rgba(212,168,83,0.1) !important;
+}
+
+.ig-load-more {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.ig-load-more__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+.ig-load-more__icon {
+  transition: transform var(--transition);
+}
+.ig-load-more__icon--up {
+  transform: none;
+}
+.ig-grid-revealed {
+  animation: fadeUp 0.4s ease both;
+}
+
 .instagram-section {
   padding: 7rem 0;
   background: linear-gradient(180deg, var(--ebony-dark) 0%, #1a0d08 100%);
+}
+
+@media (max-width: 900px) {
+  .instagram-embed-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .instagram-embed-grid { grid-template-columns: 1fr; }
 }
 
 .instagram-grid {
