@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Palette Ébène Logo">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3d2215"/>
+      <stop offset="100%" stop-color="#1a0d06"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="98" fill="url(#bgGrad)" stroke="#D4A853" stroke-width="1.5" opacity="0.9"/>
+
+  <!-- Outer decorative ring -->
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#D4A853" stroke-width="0.5" opacity="0.3" stroke-dasharray="4,8"/>
+
+  <!-- Artist palette body shape -->
+  <ellipse cx="105" cy="108" rx="58" ry="46" fill="#2C1810" stroke="#D4A853" stroke-width="1.8"/>
+
+  <!-- Thumb hole -->
+  <circle cx="72" cy="90" r="13" fill="#1a0d06" stroke="#D4A853" stroke-width="1"/>
+
+  <!-- Paint blobs on palette -->
+  <!-- Gold -->
+  <circle cx="112" cy="80" r="9" fill="#D4A853" opacity="0.95" filter="url(#glow)"/>
+  <!-- Rich red -->
+  <circle cx="132" cy="93" r="8" fill="#8B2020" opacity="0.9"/>
+  <!-- Deep purple -->
+  <circle cx="136" cy="115" r="8" fill="#5C1E7A" opacity="0.9"/>
+  <!-- Teal -->
+  <circle cx="118" cy="130" r="8" fill="#1A6B6B" opacity="0.9"/>
+  <!-- Cream -->
+  <circle cx="96" cy="132" r="7" fill="#F5F0E8" opacity="0.8"/>
+
+  <!-- Paintbrush handle (diagonal, from upper-right going down-left) -->
+  <line x1="162" y1="42" x2="98" y2="106" stroke="#D4A853" stroke-width="4" stroke-linecap="round"/>
+  <!-- Brush ferrule (metal band) -->
+  <rect x="97" y="101" width="12" height="6" rx="1" fill="#C0A060" transform="rotate(-45 103 104)"/>
+  <!-- Brush bristles -->
+  <ellipse cx="90" cy="113" rx="7" ry="4" fill="#E8C87A" transform="rotate(-45 90 113)"/>
+  <!-- Brush tip point -->
+  <path d="M85,118 L87,122 L89,118" fill="#D4A853"/>
+
+  <!-- PE Monogram letters in gold -->
+  <text x="104" y="116" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="bold"
+        fill="#D4A853" text-anchor="middle" dominant-baseline="middle" letter-spacing="1"
+        filter="url(#glow)">PE</text>
+
+  <!-- Decorative kente-inspired triangles -->
+  <polygon points="100,18 112,36 88,36" fill="#D4A853" opacity="0.5"/>
+  <polygon points="100,182 112,164 88,164" fill="#D4A853" opacity="0.4"/>
+  <polygon points="18,100 36,88 36,112" fill="#D4A853" opacity="0.4"/>
+  <polygon points="182,100 164,88 164,112" fill="#D4A853" opacity="0.4"/>
+
+  <!-- Corner dots -->
+  <circle cx="60" cy="60" r="2.5" fill="#D4A853" opacity="0.5"/>
+  <circle cx="140" cy="60" r="2.5" fill="#D4A853" opacity="0.5"/>
+  <circle cx="60" cy="140" r="2.5" fill="#D4A853" opacity="0.5"/>
+  <circle cx="140" cy="140" r="2.5" fill="#D4A853" opacity="0.5"/>
+</svg>
