@@ -3,6 +3,23 @@
         <div class="hero__gradient-orb hero__gradient-orb--1"></div>
         <div class="hero__gradient-orb hero__gradient-orb--2"></div>
         <div class="hero__gradient-orb hero__gradient-orb--3"></div>
+
+        <svg class="hero__brushstroke" viewBox="0 0 1200 600" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+                <linearGradient id="hero-brush-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%"  stop-color="#D4A853" />
+                    <stop offset="50%" stop-color="#8B3A3A" />
+                    <stop offset="100%" stop-color="#6a2a6a" />
+                </linearGradient>
+            </defs>
+            <path class="hero__brushstroke-path" d="M -50,420 C 200,250 350,520 600,300 S 950,80 1250,260" />
+        </svg>
+
+        <span class="hero__paint-dab hero__paint-dab--1" aria-hidden="true"></span>
+        <span class="hero__paint-dab hero__paint-dab--2" aria-hidden="true"></span>
+        <span class="hero__paint-dab hero__paint-dab--3" aria-hidden="true"></span>
+        <span class="hero__paint-dab hero__paint-dab--4" aria-hidden="true"></span>
+        <span class="hero__paint-dab hero__paint-dab--5" aria-hidden="true"></span>
     </div>
     <div class="hero__overlay"></div>
 

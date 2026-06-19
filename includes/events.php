@@ -1,4 +1,15 @@
 <?php
+// Pull the real photo behind a handful of our own Instagram posts so the
+// past-events grid shows actual event imagery instead of flat gradients.
+function ig_poster_src(string $post_url): ?string {
+    if (preg_match('#instagram\.com/(?:[^/]+/)?(p|reel)/([^/?]+)#', $post_url, $m)) {
+        return "https://www.instagram.com/{$m[1]}/{$m[2]}/media/?size=l";
+    }
+    return null;
+}
+
+$event_posters = $instagram_posts ?? [];
+
 $events = [
     [
         'title_key'    => 'event_1_title',
@@ -8,6 +19,7 @@ $events = [
         'badge'        => 'badge--expo',
         'gradient'     => 'gradient-event-1',
         'collaborators'=> ['Galerie Lumière', 'Association AfroArts'],
+        'poster'       => $event_posters[1] ?? null,
     ],
     [
         'title_key'    => 'event_2_title',
@@ -17,6 +29,7 @@ $events = [
         'badge'        => 'badge--concert',
         'gradient'     => 'gradient-event-2',
         'collaborators'=> ['Club Le Métronome', 'DJ Kofi B'],
+        'poster'       => $event_posters[4] ?? null,
     ],
     [
         'title_key'    => 'event_3_title',
@@ -26,6 +39,7 @@ $events = [
         'badge'        => 'badge--soiree',
         'gradient'     => 'gradient-event-3',
         'collaborators'=> ['Studio Rythmik', 'Collectif Diaspora'],
+        'poster'       => $event_posters[2] ?? null,
     ],
     [
         'title_key'    => 'event_4_title',
@@ -35,6 +49,7 @@ $events = [
         'badge'        => 'badge--vernissage',
         'gradient'     => 'gradient-event-4',
         'collaborators'=> ['Institut de Cultures Noires', 'Université Paris-VIII'],
+        'poster'       => $event_posters[13] ?? null,
     ],
     [
         'title_key'    => 'event_5_title',
@@ -44,6 +59,7 @@ $events = [
         'badge'        => 'badge--expo',
         'gradient'     => 'gradient-event-5',
         'collaborators'=> ['Paris Créatif', 'Black Business Network'],
+        'poster'       => $event_posters[9] ?? null,
     ],
     [
         'title_key'    => 'event_6_title',
@@ -53,6 +69,17 @@ $events = [
         'badge'        => 'badge--soiree',
         'gradient'     => 'gradient-event-6',
         'collaborators'=> ['La Scène Libre', 'Paroles Noires Collectif'],
+        'poster'       => $event_posters[6] ?? null,
+    ],
+    [
+        'title_key'    => 'event_7_title',
+        'date_key'     => 'event_7_date',
+        'type_key'     => 'event_7_type',
+        'desc_key'     => 'event_7_desc',
+        'badge'        => 'badge--vernissage',
+        'gradient'     => 'gradient-event-1',
+        'collaborators'=> ['Galerie Lumière', 'Collectif Diaspora'],
+        'poster'       => $event_posters[0] ?? null,
     ],
 ];
 ?>
@@ -68,11 +95,18 @@ $events = [
             <?php foreach ($events as $i => $event): ?>
             <article class="event-card <?= $event['gradient'] ?> fade-in" data-delay="<?= $i * 60 ?>" tabindex="0">
                 <div class="event-card__image-area">
+                    <?php if ($event['poster']): ?>
+                    <img class="event-card__poster" src="<?= htmlspecialchars(ig_poster_src($event['poster'])) ?>" alt="<?= htmlspecialchars(t($event['title_key'])) ?>" loading="lazy">
+                    <?php else: ?>
                     <div class="event-card__pattern"></div>
+                    <?php endif; ?>
                     <div class="event-card__glow"></div>
                     <div class="event-card__hover-overlay">
                         <span class="event-card__hover-text"><?= htmlspecialchars(t('events_view_more')) ?></span>
                     </div>
+                    <?php if ($event['poster']): ?>
+                    <a class="event-card__ig-link" href="<?= htmlspecialchars($event['poster']) ?>" target="_blank" rel="noopener noreferrer" aria-label="<?= htmlspecialchars(t('ig_cta')) ?>" tabindex="-1"></a>
+                    <?php endif; ?>
                 </div>
                 <div class="event-card__content">
                     <div class="event-card__meta">

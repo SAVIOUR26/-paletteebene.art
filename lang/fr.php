@@ -62,6 +62,10 @@ return [
     'event_6_date'  => 'Février 2024',
     'event_6_type'  => 'Slam / Poésie',
     'event_6_desc'  => "Une soirée slam et poésie orale célébrant les voix de la diaspora, entre tradition et modernité.",
+    'event_7_title' => 'Vernissage Racines & Renaissance',
+    'event_7_date'  => 'Octobre 2025',
+    'event_7_type'  => 'Vernissage',
+    'event_7_desc'  => "Notre vernissage de clôture 2025 : une rétrospective en images des artistes qui ont marqué l'année, entre peinture, photographie et installations.",
 
     // Next event
     'next_eyebrow'      => 'Prochain événement',

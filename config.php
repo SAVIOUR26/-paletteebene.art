@@ -25,7 +25,7 @@ define('GOOGLE_BUSINESS_URL', 'https://g.page/palette-ebene');
 
 // Next Event
 define('NEXT_EVENT_NAME', 'Soirée Ébène Vol. III');
-define('NEXT_EVENT_DATE', '2025-09-20 20:00:00');
+define('NEXT_EVENT_DATE', '2026-09-19 20:00:00');
 define('NEXT_EVENT_VENUE', 'TBA — Paris');
 define('NEXT_EVENT_TIME', '20:00');
 define('NEXT_EVENT_LOCATION', 'Paris, France');

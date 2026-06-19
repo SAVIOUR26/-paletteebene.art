@@ -6,6 +6,16 @@ $visible       = array_slice($instagram_posts, 0, $initial_count);
 $hidden        = array_slice($instagram_posts, $initial_count);
 $remaining     = count($hidden);
 
+// Build a direct iframe embed URL (Instagram's own embed endpoint —
+// renders the real photo/video without depending on embed.js executing
+// in time, which is what was leaving the skeleton placeholders stuck).
+function ig_embed_src(string $post_url): string {
+    if (preg_match('#instagram\.com/(?:[^/]+/)?(p|reel)/([^/?]+)#', $post_url, $m)) {
+        return "https://www.instagram.com/{$m[1]}/{$m[2]}/embed/captioned/";
+    }
+    return $post_url;
+}
+
 // i18n
 $label_view_on_ig = ($current_lang ?? 'fr') === 'en' ? 'View on Instagram' : 'Voir sur Instagram';
 $label_show_more  = ($current_lang ?? 'fr') === 'en'
@@ -37,30 +47,13 @@ $label_show_less  = ($current_lang ?? 'fr') === 'en' ? 'Show less' : 'Réduire';
         <div class="instagram-embed-grid" id="ig-grid-visible">
             <?php foreach ($visible as $i => $post_url): ?>
             <div class="ig-embed-wrap fade-in" data-delay="<?= $i * 60 ?>">
-                <blockquote
-                    class="instagram-media"
-                    data-instgrm-permalink="<?= htmlspecialchars($post_url) ?>"
-                    data-instgrm-version="14"
-                    style="background:#fff;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:calc(100% - 2px);">
-                    <div style="padding:16px;">
-                        <a href="<?= htmlspecialchars($post_url) ?>"
-                           style="background:#fff;line-height:0;padding:0;text-align:center;text-decoration:none;width:100%;"
-                           target="_blank" rel="noopener noreferrer">
-                            <!-- Loading skeleton shown until embed.js replaces it -->
-                            <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
-                                <div style="background:#f0ece4;border-radius:50%;width:40px;height:40px;flex-shrink:0;"></div>
-                                <div style="flex:1;">
-                                    <div style="background:#f0ece4;border-radius:4px;height:12px;width:80px;margin-bottom:6px;"></div>
-                                    <div style="background:#f0ece4;border-radius:4px;height:10px;width:55px;"></div>
-                                </div>
-                            </div>
-                            <div style="background:linear-gradient(135deg,#2C1810,#6a2a6a);padding:30% 0;border-radius:4px;margin-bottom:12px;"></div>
-                            <div style="color:#3897f0;font-family:Arial,sans-serif;font-size:14px;font-weight:600;text-align:center;">
-                                <?= htmlspecialchars($label_view_on_ig) ?>
-                            </div>
-                        </a>
-                    </div>
-                </blockquote>
+                <iframe
+                    class="ig-embed-frame"
+                    src="<?= htmlspecialchars(ig_embed_src($post_url)) ?>"
+                    loading="lazy"
+                    allowtransparency="true"
+                    title="<?= htmlspecialchars(t('ig_eyebrow')) ?> — @<?= htmlspecialchars(INSTAGRAM_USERNAME) ?>"
+                ></iframe>
             </div>
             <?php endforeach; ?>
         </div>
@@ -70,29 +63,13 @@ $label_show_less  = ($current_lang ?? 'fr') === 'en' ? 'Show less' : 'Réduire';
         <div class="instagram-embed-grid instagram-embed-grid--hidden" id="ig-grid-more" hidden>
             <?php foreach ($hidden as $post_url): ?>
             <div class="ig-embed-wrap">
-                <blockquote
-                    class="instagram-media"
-                    data-instgrm-permalink="<?= htmlspecialchars($post_url) ?>"
-                    data-instgrm-version="14"
-                    style="background:#fff;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);margin:1px;max-width:540px;min-width:326px;padding:0;width:calc(100% - 2px);">
-                    <div style="padding:16px;">
-                        <a href="<?= htmlspecialchars($post_url) ?>"
-                           style="background:#fff;line-height:0;padding:0;text-align:center;text-decoration:none;width:100%;"
-                           target="_blank" rel="noopener noreferrer">
-                            <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;">
-                                <div style="background:#f0ece4;border-radius:50%;width:40px;height:40px;flex-shrink:0;"></div>
-                                <div style="flex:1;">
-                                    <div style="background:#f0ece4;border-radius:4px;height:12px;width:80px;margin-bottom:6px;"></div>
-                                    <div style="background:#f0ece4;border-radius:4px;height:10px;width:55px;"></div>
-                                </div>
-                            </div>
-                            <div style="background:linear-gradient(135deg,#2C1810,#6a2a6a);padding:30% 0;border-radius:4px;margin-bottom:12px;"></div>
-                            <div style="color:#3897f0;font-family:Arial,sans-serif;font-size:14px;font-weight:600;text-align:center;">
-                                <?= htmlspecialchars($label_view_on_ig) ?>
-                            </div>
-                        </a>
-                    </div>
-                </blockquote>
+                <iframe
+                    class="ig-embed-frame"
+                    src="<?= htmlspecialchars(ig_embed_src($post_url)) ?>"
+                    loading="lazy"
+                    allowtransparency="true"
+                    title="<?= htmlspecialchars(t('ig_eyebrow')) ?> — @<?= htmlspecialchars(INSTAGRAM_USERNAME) ?>"
+                ></iframe>
             </div>
             <?php endforeach; ?>
         </div>

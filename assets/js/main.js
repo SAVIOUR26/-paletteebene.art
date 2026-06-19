@@ -18,8 +18,6 @@
           <polyline points="18 15 12 9 6 15"/>
         </svg>
         ${this.dataset.labelLess}`;
-      // Re-process newly revealed embeds if Instagram script already ran
-      if (window.instgrm) window.instgrm.Embeds.process();
     } else {
       moreGrid.hidden = true;
       moreGrid.classList.remove('ig-grid-revealed');
@@ -369,41 +367,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 })();
 
-/* ── Load Instagram embed script dynamically ────────────── */
-(function () {
-  const instagramSection = document.getElementById('instagram');
-  if (!instagramSection) return;
-
-  let scriptRequested = false;
-
-  function loadEmbedScript() {
-    if (window.instgrm) {
-      window.instgrm.Embeds.process();
-      return;
-    }
-    if (scriptRequested) return;
-    scriptRequested = true;
-
-    const s = document.createElement('script');
-    s.src = '//www.instagram.com/embed.js';
-    s.async = true;
-    s.onload = () => { if (window.instgrm) window.instgrm.Embeds.process(); };
-    document.body.appendChild(s);
-
-    // Instagram's script can be slow on some networks — retry processing
-    // a couple of times in case it finished loading after our onload check.
-    [1500, 4000].forEach(delay => {
-      setTimeout(() => { if (window.instgrm) window.instgrm.Embeds.process(); }, delay);
-    });
-  }
-
-  // Only load embed.js when user scrolls near Instagram section
-  const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      loadEmbedScript();
-      observer.disconnect();
-    }
-  }, { rootMargin: '200px' });
-
-  observer.observe(instagramSection);
-})();

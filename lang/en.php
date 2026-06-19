@@ -62,6 +62,10 @@ return [
     'event_6_date'  => 'February 2024',
     'event_6_type'  => 'Slam / Poetry',
     'event_6_desc'  => "An evening of spoken word and oral poetry celebrating the voices of the diaspora, bridging tradition and modernity.",
+    'event_7_title' => 'Vernissage: Roots & Renaissance',
+    'event_7_date'  => 'October 2025',
+    'event_7_type'  => 'Vernissage',
+    'event_7_desc'  => "Our 2025 closing vernissage: a retrospective of the artists who defined the year, spanning painting, photography and installation work.",
 
     // Next event
     'next_eyebrow'      => 'Next event',
