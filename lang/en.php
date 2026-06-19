@@ -35,6 +35,7 @@ return [
     'events_title'      => 'Past Events',
     'events_subtitle'   => 'Every event is a unique celebration of African and diaspora cultural richness.',
     'events_collab'     => 'In collaboration with',
+    'events_view_more'  => 'View details',
 
     // Event data (titles + descriptions)
     'event_1_title' => 'Vernissage: Colours of the World',

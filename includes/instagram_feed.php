@@ -132,6 +132,3 @@ $label_show_less  = ($current_lang ?? 'fr') === 'en' ? 'Show less' : 'Réduire';
 
     </div>
 </section>
-
-<!-- Instagram embed script — loads once, processes all blockquotes on the page -->
-<script async src="//www.instagram.com/embed.js"></script>

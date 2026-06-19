@@ -35,6 +35,56 @@
   });
 })();
 
+/* ── Hero: mouse parallax on orbs + animated stat count-up ─ */
+(function () {
+  const hero = document.getElementById('hero');
+  const bg   = document.getElementById('hero-bg');
+  if (!hero || !bg) return;
+
+  const orbs = bg.querySelectorAll('.hero__gradient-orb');
+  const isTouch = window.matchMedia('(pointer: coarse)').matches;
+
+  if (!isTouch && orbs.length) {
+    hero.addEventListener('pointermove', (e) => {
+      const x = (e.clientX / window.innerWidth  - 0.5) * 2;
+      const y = (e.clientY / window.innerHeight - 0.5) * 2;
+      orbs.forEach((orb, i) => {
+        const strength = (i + 1) * 10;
+        orb.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
+      });
+    });
+    hero.addEventListener('pointerleave', () => {
+      orbs.forEach(orb => { orb.style.transform = ''; });
+    });
+  }
+
+  const counters = hero.querySelectorAll('[data-count-to]');
+  if (!counters.length) return;
+
+  const animateCount = (el) => {
+    const target = parseInt(el.dataset.countTo, 10);
+    const duration = 1400;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  };
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      animateCount(entry.target);
+      counterObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(el => counterObserver.observe(el));
+})();
+
 /* ── Sticky Nav ─────────────────────────────────────────── */
 (function () {
   const header = document.getElementById('site-header');
@@ -324,17 +374,33 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   const instagramSection = document.getElementById('instagram');
   if (!instagramSection) return;
 
+  let scriptRequested = false;
+
+  function loadEmbedScript() {
+    if (window.instgrm) {
+      window.instgrm.Embeds.process();
+      return;
+    }
+    if (scriptRequested) return;
+    scriptRequested = true;
+
+    const s = document.createElement('script');
+    s.src = '//www.instagram.com/embed.js';
+    s.async = true;
+    s.onload = () => { if (window.instgrm) window.instgrm.Embeds.process(); };
+    document.body.appendChild(s);
+
+    // Instagram's script can be slow on some networks — retry processing
+    // a couple of times in case it finished loading after our onload check.
+    [1500, 4000].forEach(delay => {
+      setTimeout(() => { if (window.instgrm) window.instgrm.Embeds.process(); }, delay);
+    });
+  }
+
   // Only load embed.js when user scrolls near Instagram section
   const observer = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting) {
-      if (!document.querySelector('script[src*="instagram.com/embed"]')) {
-        const s = document.createElement('script');
-        s.src = '//www.instagram.com/embed.js';
-        s.async = true;
-        document.body.appendChild(s);
-      } else if (window.instgrm) {
-        window.instgrm.Embeds.process();
-      }
+      loadEmbedScript();
       observer.disconnect();
     }
   }, { rootMargin: '200px' });

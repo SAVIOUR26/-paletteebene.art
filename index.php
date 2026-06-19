@@ -56,9 +56,9 @@ $og_locale = $current_lang === 'en' ? 'en_GB' : 'fr_FR';
 
 <?php if ($page === 'home'): ?>
     <?php include 'includes/hero.php'; ?>
+    <?php include 'includes/about.php'; ?>
     <?php include 'includes/events.php'; ?>
     <?php include 'includes/next_event.php'; ?>
-    <?php include 'includes/about.php'; ?>
     <?php include 'includes/instagram_feed.php'; ?>
     <?php include 'includes/contact_section.php'; ?>
 <?php elseif ($page === 'events'): ?>

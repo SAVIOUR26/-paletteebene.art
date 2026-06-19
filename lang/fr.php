@@ -35,6 +35,7 @@ return [
     'events_title'      => 'Nos Événements Passés',
     'events_subtitle'   => 'Chaque événement est une célébration unique de la richesse culturelle africaine et de sa diaspora.',
     'events_collab'     => 'En collaboration avec',
+    'events_view_more'  => 'Voir les détails',
 
     // Event data (titles + descriptions)
     'event_1_title' => 'Vernissage Couleurs du Monde',
