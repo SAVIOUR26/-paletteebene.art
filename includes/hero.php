@@ -24,6 +24,8 @@
     <div class="hero__overlay"></div>
 
     <div class="hero__content">
+        <img class="hero__logo" src="assets/images/logo.svg" alt="Palette Ébène" width="84" height="84">
+
         <div class="hero__eyebrow">
             <span class="hero__eyebrow-line" aria-hidden="true"></span>
             <span class="hero__eyebrow-text"><?= htmlspecialchars(t('hero_badge')) ?></span>

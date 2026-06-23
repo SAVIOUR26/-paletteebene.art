@@ -102,5 +102,6 @@ $instagram_posts = [
     'https://www.instagram.com/palette.ebene/p/DGJNwbTNhND/',
 ];
 
-// How many posts to show before "See more" button
-define('INSTAGRAM_INITIAL_COUNT', 9);
+// How many posts to feature on the page — kept small and curated; the
+// rest live on Instagram itself, linked via the "View more" CTA below.
+define('INSTAGRAM_INITIAL_COUNT', 6);

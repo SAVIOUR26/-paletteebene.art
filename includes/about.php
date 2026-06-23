@@ -64,9 +64,9 @@
                 <p><?= th('about_p2') ?></p>
 
                 <div class="about__values">
-                    <div class="about__value">
+                    <div class="about__value about__value--red">
                         <div class="about__value-icon" aria-hidden="true">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4A853" stroke-width="2">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M12 2L2 7l10 5 10-5-10-5z"/>
                                 <path d="M2 17l10 5 10-5"/>
                                 <path d="M2 12l10 5 10-5"/>
@@ -77,9 +77,9 @@
                             <p><?= htmlspecialchars(t('about_val1_text')) ?></p>
                         </div>
                     </div>
-                    <div class="about__value">
+                    <div class="about__value about__value--purple">
                         <div class="about__value-icon" aria-hidden="true">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4A853" stroke-width="2">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="10"/>
                                 <path d="M12 8v4l3 3"/>
                             </svg>
@@ -89,9 +89,9 @@
                             <p><?= htmlspecialchars(t('about_val2_text')) ?></p>
                         </div>
                     </div>
-                    <div class="about__value">
+                    <div class="about__value about__value--teal">
                         <div class="about__value-icon" aria-hidden="true">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4A853" stroke-width="2">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
                                 <circle cx="9" cy="7" r="4"/>
                                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>

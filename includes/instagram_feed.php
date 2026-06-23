@@ -17,11 +17,9 @@ function ig_embed_src(string $post_url): string {
 }
 
 // i18n
-$label_view_on_ig = ($current_lang ?? 'fr') === 'en' ? 'View on Instagram' : 'Voir sur Instagram';
-$label_show_more  = ($current_lang ?? 'fr') === 'en'
-    ? "Show all {$total} posts"
-    : "Voir les {$total} publications";
-$label_show_less  = ($current_lang ?? 'fr') === 'en' ? 'Show less' : 'Réduire';
+$label_more_count = ($current_lang ?? 'fr') === 'en'
+    ? "+{$remaining} more on Instagram"
+    : "+{$remaining} publications sur Instagram";
 ?>
 <section class="instagram-section" id="instagram" aria-labelledby="instagram-title">
     <div class="container">
@@ -43,7 +41,7 @@ $label_show_less  = ($current_lang ?? 'fr') === 'en' ? 'Show less' : 'Réduire';
             </p>
         </div>
 
-        <!-- Initial 9 posts — always visible -->
+        <!-- A small curated highlight strip — the full feed lives on Instagram itself -->
         <div class="instagram-embed-grid" id="ig-grid-visible">
             <?php foreach ($visible as $i => $post_url): ?>
             <div class="ig-embed-wrap fade-in" data-delay="<?= $i * 60 ?>">
@@ -58,40 +56,7 @@ $label_show_less  = ($current_lang ?? 'fr') === 'en' ? 'Show less' : 'Réduire';
             <?php endforeach; ?>
         </div>
 
-        <?php if ($remaining > 0): ?>
-        <!-- Remaining posts — hidden until "Show more" clicked -->
-        <div class="instagram-embed-grid instagram-embed-grid--hidden" id="ig-grid-more" hidden>
-            <?php foreach ($hidden as $post_url): ?>
-            <div class="ig-embed-wrap">
-                <iframe
-                    class="ig-embed-frame"
-                    src="<?= htmlspecialchars(ig_embed_src($post_url)) ?>"
-                    loading="lazy"
-                    allowtransparency="true"
-                    title="<?= htmlspecialchars(t('ig_eyebrow')) ?> — @<?= htmlspecialchars(INSTAGRAM_USERNAME) ?>"
-                ></iframe>
-            </div>
-            <?php endforeach; ?>
-        </div>
-
-        <!-- Show more / Show less toggle -->
-        <div class="ig-load-more fade-in" id="ig-load-more-wrap">
-            <button
-                class="btn btn--outline ig-load-more__btn"
-                id="ig-load-more-btn"
-                aria-expanded="false"
-                aria-controls="ig-grid-more"
-                data-label-more="<?= htmlspecialchars($label_show_more) ?>"
-                data-label-less="<?= htmlspecialchars($label_show_less) ?>">
-                <svg class="ig-load-more__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="6 9 12 15 18 9"/>
-                </svg>
-                <?= htmlspecialchars($label_show_more) ?>
-            </button>
-        </div>
-        <?php endif; ?>
-
-        <!-- Follow CTA -->
+        <!-- Follow / view-more CTA -->
         <div class="instagram-cta fade-in">
             <a href="<?= htmlspecialchars(INSTAGRAM_PROFILE_URL) ?>"
                class="btn btn--instagram"
@@ -105,6 +70,9 @@ $label_show_less  = ($current_lang ?? 'fr') === 'en' ? 'Show less' : 'Réduire';
                 </svg>
                 <?= htmlspecialchars(t('ig_cta')) ?>
             </a>
+            <?php if ($remaining > 0): ?>
+            <p class="instagram-cta__count"><?= htmlspecialchars($label_more_count) ?></p>
+            <?php endif; ?>
         </div>
 
     </div>

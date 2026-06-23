@@ -1,38 +1,5 @@
 /* Palette Ébène — Main JavaScript */
 
-/* ── Instagram "Show more / Show less" ──────────────────── */
-(function () {
-  const btn     = document.getElementById('ig-load-more-btn');
-  const moreGrid = document.getElementById('ig-grid-more');
-  if (!btn || !moreGrid) return;
-
-  btn.addEventListener('click', function () {
-    const expanded = this.getAttribute('aria-expanded') === 'true';
-
-    if (!expanded) {
-      moreGrid.hidden = false;
-      moreGrid.classList.add('ig-grid-revealed');
-      this.setAttribute('aria-expanded', 'true');
-      this.innerHTML = `
-        <svg class="ig-load-more__icon ig-load-more__icon--up" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polyline points="18 15 12 9 6 15"/>
-        </svg>
-        ${this.dataset.labelLess}`;
-    } else {
-      moreGrid.hidden = true;
-      moreGrid.classList.remove('ig-grid-revealed');
-      this.setAttribute('aria-expanded', 'false');
-      this.innerHTML = `
-        <svg class="ig-load-more__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-        ${this.dataset.labelMore}`;
-      // Scroll back up to the feed section smoothly
-      document.getElementById('instagram')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-})();
-
 /* ── Hero: mouse parallax on orbs + animated stat count-up ─ */
 (function () {
   const hero = document.getElementById('hero');
