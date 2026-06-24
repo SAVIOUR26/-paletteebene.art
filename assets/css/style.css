@@ -140,11 +140,26 @@ h1, h2, h3, h4 {
 
 /* Each section borrows a different blob from the logo palette so the
    page reads as a painter's palette rather than one accent repeated. */
-#about .section-eyebrow      { color: var(--red-art-light); }
+#about .section-eyebrow      { color: var(--red-art); }
 #evenements .section-eyebrow { color: var(--gold); }
 #instagram .section-eyebrow  { color: var(--purple-art-light); }
 #prochain-evenement .next-event__eyebrow span { color: var(--teal-art-light); }
 #contact .section-eyebrow    { color: var(--gold); }
+
+/* About sits on a light cream surface — flip the dark-mode text/divider/button
+   defaults so they read correctly against it. */
+#about .section-title { color: var(--ebony-dark); }
+#about .section-divider { background: linear-gradient(90deg, var(--red-art), transparent); }
+#about .btn--primary {
+  background: var(--ebony-dark);
+  color: var(--gold);
+  border-color: var(--ebony-dark);
+}
+#about .btn--primary:hover {
+  background: var(--red-art);
+  color: #fff;
+  border-color: var(--red-art);
+}
 
 .section-subtitle {
   font-size: 1.1rem;
@@ -1030,9 +1045,20 @@ h1, h2, h3, h4 {
 }
 
 /* ── About ──────────────────────────────────────────────── */
+/* Light cream surface — deliberate contrast break from the dark hero/sections
+   so the logo's red/purple/teal/gold palette reads as bold, obvious color
+   rather than a subtle tint on ebony. */
 .about {
   padding: 7rem 0;
-  background: var(--ebony-dark);
+  background: var(--cream);
+  position: relative;
+}
+.about::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--red-art), var(--gold), var(--purple-art), var(--teal-art));
 }
 
 .about__container {
@@ -1056,7 +1082,7 @@ h1, h2, h3, h4 {
 .about__vertical-line {
   width: 1px;
   height: 60px;
-  background: linear-gradient(180deg, transparent, var(--gold), transparent);
+  background: linear-gradient(180deg, transparent, var(--red-art), transparent);
 }
 
 .about__geo-art {
@@ -1067,67 +1093,75 @@ h1, h2, h3, h4 {
 
 .about__lead {
   font-size: 1.15rem;
-  color: var(--cream);
+  color: var(--ebony-dark);
   line-height: 1.8;
 }
-.about__lead strong { color: var(--gold); }
+.about__lead strong { color: var(--red-art); }
 
-.about__text p { color: var(--text-light); }
-.about__text em { color: var(--cream-dark); font-style: italic; }
-.about__text strong { color: var(--cream); }
+.about__text p { color: #6b5a4f; }
+.about__text em { color: var(--ebony); font-style: italic; }
+.about__text strong { color: var(--ebony-dark); }
 
 .about__values {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  padding: 1.5rem;
-  background: rgba(61,35,24,0.4);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(212,168,83,0.12);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
 }
 
 .about__value {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
+  padding: 1.25rem;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 6px 24px rgba(44,24,16,0.08);
+  border-bottom: 3px solid transparent;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.about__value:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(44,24,16,0.14);
 }
 
 .about__value-icon {
   flex-shrink: 0;
   width: 48px; height: 48px;
-  background: rgba(212,168,83,0.1);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(212,168,83,0.2);
+  color: #fff;
 }
 
 .about__value-title {
   font-family: var(--font-sans);
   font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--gold);
+  font-weight: 700;
   margin-bottom: 0.25rem;
 }
-.about__value p { font-size: 0.875rem; color: var(--text-light); }
+.about__value p { font-size: 0.875rem; color: #6b5a4f; }
 
-/* Each value borrows a different blob from the logo's palette */
-.about__value--red    .about__value-icon { color: var(--red-art-light);    background: rgba(180,58,58,0.12);   border-color: rgba(180,58,58,0.3); }
-.about__value--red    .about__value-title { color: var(--red-art-light); }
-.about__value--purple .about__value-icon { color: var(--purple-art-light); background: rgba(122,58,154,0.12);  border-color: rgba(122,58,154,0.3); }
-.about__value--purple .about__value-title { color: var(--purple-art-light); }
-.about__value--teal    .about__value-icon { color: var(--teal-art-light);   background: rgba(34,138,130,0.12);  border-color: rgba(34,138,130,0.3); }
-.about__value--teal    .about__value-title { color: var(--teal-art-light); }
+/* Each value is a bold solid blob from the logo's palette — full-saturation,
+   not a low-opacity tint — so the brand colors are unmistakable. */
+.about__value--red    { border-bottom-color: var(--red-art); }
+.about__value--red    .about__value-icon { background: var(--red-art); }
+.about__value--red    .about__value-title { color: var(--red-art); }
+.about__value--purple { border-bottom-color: var(--purple-art); }
+.about__value--purple .about__value-icon { background: var(--purple-art); }
+.about__value--purple .about__value-title { color: var(--purple-art); }
+.about__value--teal    { border-bottom-color: var(--teal-art); }
+.about__value--teal    .about__value-icon { background: var(--teal-art); }
+.about__value--teal    .about__value-title { color: var(--teal-art); }
 
 .about__stats-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   padding: 1.5rem;
-  background: rgba(212,168,83,0.06);
+  background: #fff;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(212,168,83,0.12);
+  box-shadow: 0 6px 24px rgba(44,24,16,0.08);
 }
 .about__stat-item { text-align: center; }
 .about__stat-number {
@@ -1135,13 +1169,13 @@ h1, h2, h3, h4 {
   font-family: var(--font-serif);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--red-art);
 }
 .about__stat-label {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--text-light);
+  color: #6b5a4f;
 }
 
 /* ── Instagram Feed (real embeds) ──────────────────────── */

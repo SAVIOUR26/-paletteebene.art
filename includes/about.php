@@ -7,8 +7,8 @@
                 <!-- Geometric African-inspired art element -->
                 <svg width="220" height="320" viewBox="0 0 220 320" xmlns="http://www.w3.org/2000/svg">
                     <!-- Outer ring -->
-                    <circle cx="110" cy="110" r="90" stroke="#D4A853" stroke-width="1.5" fill="none" opacity="0.3"/>
-                    <circle cx="110" cy="110" r="70" stroke="#D4A853" stroke-width="1" fill="none" opacity="0.2"/>
+                    <circle cx="110" cy="110" r="90" stroke="#8B2020" stroke-width="1.5" fill="none" opacity="0.35"/>
+                    <circle cx="110" cy="110" r="70" stroke="#8B2020" stroke-width="1" fill="none" opacity="0.22"/>
                     <!-- Central palette shape -->
                     <ellipse cx="110" cy="115" rx="55" ry="42" fill="#2C1810" stroke="#D4A853" stroke-width="1.5"/>
                     <!-- Thumb hole -->
@@ -20,30 +20,30 @@
                     <circle cx="110" cy="130" r="7" fill="#2a6a6a" opacity="0.9"/>
                     <circle cx="90" cy="120" r="6" fill="#F5F0E8" opacity="0.7"/>
                     <!-- Paintbrush diagonal -->
-                    <line x1="150" y1="60" x2="185" y2="30" stroke="#D4A853" stroke-width="3" stroke-linecap="round"/>
-                    <polygon points="185,20 178,35 192,35" fill="#D4A853"/>
+                    <line x1="150" y1="60" x2="185" y2="30" stroke="#8B2020" stroke-width="3" stroke-linecap="round"/>
+                    <polygon points="185,20 178,35 192,35" fill="#8B2020"/>
                     <!-- Decorative triangles (kente-inspired) -->
-                    <polygon points="110,30 125,55 95,55" fill="#D4A853" opacity="0.6"/>
-                    <polygon points="40,160 65,185 40,210" fill="#D4A853" opacity="0.4"/>
-                    <polygon points="180,160 205,185 180,210" fill="#D4A853" opacity="0.4"/>
+                    <polygon points="110,30 125,55 95,55" fill="#5C1E7A" opacity="0.7"/>
+                    <polygon points="40,160 65,185 40,210" fill="#1A6B6B" opacity="0.5"/>
+                    <polygon points="180,160 205,185 180,210" fill="#D4A853" opacity="0.6"/>
                     <!-- Bottom diamond pattern -->
-                    <rect x="95" y="200" width="30" height="30" transform="rotate(45 110 215)" fill="none" stroke="#D4A853" stroke-width="1.5" opacity="0.5"/>
-                    <rect x="101" y="206" width="18" height="18" transform="rotate(45 110 215)" fill="#D4A853" opacity="0.2"/>
+                    <rect x="95" y="200" width="30" height="30" transform="rotate(45 110 215)" fill="none" stroke="#8B2020" stroke-width="1.5" opacity="0.5"/>
+                    <rect x="101" y="206" width="18" height="18" transform="rotate(45 110 215)" fill="#8B2020" opacity="0.2"/>
                     <!-- Dots pattern -->
-                    <circle cx="55" cy="160" r="2.5" fill="#D4A853" opacity="0.6"/>
-                    <circle cx="70" cy="175" r="2" fill="#D4A853" opacity="0.4"/>
-                    <circle cx="165" cy="160" r="2.5" fill="#D4A853" opacity="0.6"/>
-                    <circle cx="150" cy="175" r="2" fill="#D4A853" opacity="0.4"/>
+                    <circle cx="55" cy="160" r="2.5" fill="#5C1E7A" opacity="0.7"/>
+                    <circle cx="70" cy="175" r="2" fill="#5C1E7A" opacity="0.5"/>
+                    <circle cx="165" cy="160" r="2.5" fill="#1A6B6B" opacity="0.7"/>
+                    <circle cx="150" cy="175" r="2" fill="#1A6B6B" opacity="0.5"/>
                     <!-- PE monogram -->
-                    <text x="110" y="119" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#D4A853" text-anchor="middle" opacity="0.9">PE</text>
+                    <text x="110" y="119" font-family="Georgia, serif" font-size="22" font-weight="bold" fill="#D4A853" text-anchor="middle" opacity="0.95">PE</text>
                     <!-- Adinkra-inspired symbol at bottom -->
-                    <g transform="translate(85, 240)" opacity="0.7">
-                        <circle cx="25" cy="25" r="20" fill="none" stroke="#D4A853" stroke-width="1.5"/>
-                        <circle cx="25" cy="25" r="12" fill="none" stroke="#D4A853" stroke-width="1"/>
-                        <line x1="25" y1="5" x2="25" y2="45" stroke="#D4A853" stroke-width="1.5"/>
-                        <line x1="5" y1="25" x2="45" y2="25" stroke="#D4A853" stroke-width="1.5"/>
-                        <line x1="11" y1="11" x2="39" y2="39" stroke="#D4A853" stroke-width="1"/>
-                        <line x1="39" y1="11" x2="11" y2="39" stroke="#D4A853" stroke-width="1"/>
+                    <g transform="translate(85, 240)" opacity="0.8">
+                        <circle cx="25" cy="25" r="20" fill="none" stroke="#8B2020" stroke-width="1.5"/>
+                        <circle cx="25" cy="25" r="12" fill="none" stroke="#5C1E7A" stroke-width="1"/>
+                        <line x1="25" y1="5" x2="25" y2="45" stroke="#8B2020" stroke-width="1.5"/>
+                        <line x1="5" y1="25" x2="45" y2="25" stroke="#8B2020" stroke-width="1.5"/>
+                        <line x1="11" y1="11" x2="39" y2="39" stroke="#1A6B6B" stroke-width="1"/>
+                        <line x1="39" y1="11" x2="11" y2="39" stroke="#1A6B6B" stroke-width="1"/>
                     </g>
                 </svg>
             </div>
